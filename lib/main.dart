@@ -18,9 +18,10 @@ class flutter_demo extends StatelessWidget {
           primarySwatch: Colors.deepOrange,
               fontFamily: GoogleFonts.lato().fontFamily,
       ),
+      debugShowCheckedModeBanner: false,
       // initialRoute: "/home",
       routes: {
-        "/" : (context) => LoginPage(),
+        "/" : (context) => HomePage(),
         MyRoutes.LoginRoute :(context) => LoginPage(),
         MyRoutes.HomeRoute: (context) => HomePage()
       },
