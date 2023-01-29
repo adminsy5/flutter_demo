@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/pages/home_page.dart';
+import 'package:flutter_demo/pages/login_page.dart';
+import 'package:flutter_demo/utils/routes.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(flutter_demo());
 }
 
 class flutter_demo extends StatelessWidget {
-  String surname = "Makwana";
-  int  age= 19;
-  
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Material(
-        child: Center(
-          child: Container(
-            child: Text("Hello My Name is Piyush $surname & age is $age !"),
-          ),
-        ),
+      themeMode: ThemeMode.light,
+      theme: ThemeData(
+          primarySwatch: Colors.deepOrange,
+              fontFamily: GoogleFonts.lato().fontFamily,
       ),
+      // initialRoute: "/home",
+      routes: {
+        "/" : (context) => LoginPage(),
+        MyRoutes.LoginRoute :(context) => LoginPage(),
+        MyRoutes.HomeRoute: (context) => HomePage()
+      },
     );
   }
 }
