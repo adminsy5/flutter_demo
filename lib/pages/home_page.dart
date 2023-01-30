@@ -43,12 +43,51 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: (ItemsOfApp.items!.isNotEmpty && ItemsOfApp.items != null)
-            ? ListView.builder(
-                itemCount: ItemsOfApp.items?.length,
+            ? GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
+                ),
                 itemBuilder: (context, index) {
-                  return ItemWidget(itemsOfApp: ItemsOfApp.items![index]);
+                  final item = ItemsOfApp.items![index];
+                  return Card(
+                    clipBehavior: Clip.antiAlias,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    child: GridTile(
+                      header: Container(
+                        child: Text(
+                          item.name,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.deepOrange,
+                        ),
+                      ),
+                      child: Image.network(item.image),
+                      footer: Container(
+                        child: Text(
+                          item.price.toString(),
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.yellow,
+                        ),
+                      ),
+                    ),
+                  );
                 },
+                itemCount: ItemsOfApp.items!.length,
               )
+            // ? ListView.builder(
+            //     itemCount: ItemsOfApp.items?.length,
+            //     itemBuilder: (context, index) {
+            //       return ItemWidget(itemsOfApp: ItemsOfApp.items![index]);
+            //     },
+            //   )
             : Center(
                 child: CircularProgressIndicator(),
               ),
